@@ -944,4 +944,15 @@ body.no-demo-bar .pf-demo-bar{display:none!important}
   var tbtn = document.getElementById('theme');
   if (tbtn) tbtn.setAttribute('aria-checked', String(want === 'dark'));
 })();</script>
+<!-- Visit analytics: GoatCounter (no cookies, no personal data). Path ignores theme params; keeps Viewpoint tab. -->
+<script>
+window.goatcounter = {
+  path: function () {
+    var tab = null;
+    try { tab = new URLSearchParams(location.search).get('tab'); } catch (e) {}
+    return location.pathname + (tab ? '?tab=' + tab : '');
+  }
+};
+</script>
+<script data-goatcounter="https://joshuablackwell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body></html>

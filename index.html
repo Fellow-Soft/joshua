@@ -1109,6 +1109,23 @@ footer p {
     if (e.key === 'color-scheme') applyMeta(getStored());
   });
 
+  // Visit analytics (GoatCounter): walkthrough plays and contact clicks are counted as events
+  function track(name) {
+    try {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path: name, title: name, event: true });
+      }
+    } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('Resume') >= 0) track('Opened resume');
+    else if (href.indexOf('linkedin.com') >= 0) track('Opened LinkedIn');
+    else if (href.indexOf('mailto:') === 0) track('Clicked email');
+  });
+
   // Video frames: hide native controls until pressed; play one walkthrough at a time
   var frames = document.querySelectorAll('.frame');
   var videos = document.querySelectorAll('.frame video');
@@ -1126,6 +1143,10 @@ footer p {
       fr.classList.add('playing');
       v.controls = true;
       videos.forEach(function (o) { if (o !== v && !o.paused) o.pause(); });
+      if (!v.getAttribute('data-counted')) {
+        v.setAttribute('data-counted', '1');
+        track('Played: ' + (v.getAttribute('aria-label') || v.getAttribute('src')));
+      }
     });
   });
 
@@ -1143,5 +1164,16 @@ footer p {
   items.forEach(function (el) { io.observe(el); });
 })();
 </script>
+<!-- Visit analytics: GoatCounter (no cookies, no personal data). Path ignores theme params; keeps Viewpoint tab. -->
+<script>
+window.goatcounter = {
+  path: function () {
+    var tab = null;
+    try { tab = new URLSearchParams(location.search).get('tab'); } catch (e) {}
+    return location.pathname + (tab ? '?tab=' + tab : '');
+  }
+};
+</script>
+<script data-goatcounter="https://joshuablackwell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

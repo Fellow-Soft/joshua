@@ -17218,5 +17218,16 @@ body.no-demo-bar .pf-demo-bar{display:none!important}
   if (want === 'dark' && typeof applyTheme === 'function') {
     applyTheme('dark');
   }
-})();</script></body>
+})();</script><!-- Visit analytics: GoatCounter (no cookies, no personal data). Path ignores theme params; keeps Viewpoint tab. -->
+<script>
+window.goatcounter = {
+  path: function () {
+    var tab = null;
+    try { tab = new URLSearchParams(location.search).get('tab'); } catch (e) {}
+    return location.pathname + (tab ? '?tab=' + tab : '');
+  }
+};
+</script>
+<script data-goatcounter="https://joshuablackwell.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
 </html>

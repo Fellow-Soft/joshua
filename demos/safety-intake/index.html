@@ -939,8 +939,9 @@ body.no-demo-bar .pf-demo-bar{display:none!important}
   var forced = q.get('theme');
   var stored = null;
   try { stored = localStorage.getItem('color-scheme'); } catch(e){}
-  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var want = forced || stored || (sysDark ? 'dark' : 'light');
+  var want = (forced === 'dark' || forced === 'light') ? forced : (stored === 'dark' || stored === 'light' ? stored : 'light');
   document.documentElement.setAttribute('data-theme', want);
+  var tbtn = document.getElementById('theme');
+  if (tbtn) tbtn.setAttribute('aria-checked', String(want === 'dark'));
 })();</script>
 </body></html>

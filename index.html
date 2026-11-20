@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <script>
 try {
   var s = localStorage.getItem('color-scheme');
-  if (s === 'light' || s === 'dark') {
-    document.querySelector('meta[name="color-scheme"]').content = s;
+  if (s === 'dark') {
+    document.querySelector('meta[name="color-scheme"]').content = 'dark';
   }
 } catch (e) {}
 </script>
@@ -58,7 +58,7 @@ try {
 
 /* Raw theme tokens: Option A (Mineral Sage & Warm Rust / Duskfield Den) */
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   --paper-l: #F3EFE6;   --paper-d: #0E1214;
   --paper2-l: #EAE3D5;  --paper2-d: #141A1D;
@@ -140,43 +140,7 @@ try {
   }
 }
 
-/* Fallback for browsers without light-dark() when OS prefers dark and no light override */
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
-    --paper: var(--paper-d);
-    --paper-2: var(--paper2-d);
-    --paper-3: var(--paper3-d);
-    --card: var(--card-d);
-    --ink: var(--ink-d);
-    --ink-2: var(--ink2-d);
-    --ink-3: var(--ink3-d);
-    --accent: var(--accent-d);
-    --accent-deep: var(--accent-deep-d);
-    --accent-soft: var(--accent-soft-d);
-    --slate: var(--slate-d);
-    --moss: var(--moss-d);
-    --moss-bg: var(--moss-bg-d);
-    --amber: var(--amber-d);
-    --amber-bg: var(--amber-bg-d);
-    --line: var(--line-d);
-    --line-2: var(--line2-d);
-    --sky-1: var(--sky1-d);
-    --sky-2: var(--sky2-d);
-    --sky-3: var(--sky3-d);
-    --glow-a: var(--glow-a-d);
-    --glow-b: var(--glow-b-d);
-    --btn-ghost: var(--btn-ghost-d);
-    --disc-bg: var(--disc-bg-d);
-    --disc-ring: var(--disc-ring-d);
-    --pet-bg1: var(--pet-bg1-d);
-    --pet-bg2: var(--pet-bg2-d);
-    --scroll-track: var(--scroll-track-d);
-    --scroll-thumb: var(--scroll-thumb-d);
-    --shadow-h: 0 1px 2px rgba(0, 0, 0, .26), 0 12px 30px rgba(0, 0, 0, .28);
-    --shadow-xl: 0 2px 10px rgba(0, 0, 0, .32), 0 24px 56px rgba(0, 0, 0, .42);
-  }
-}
-
+/* Fallback for browsers without light-dark() when dark mode is toggled on */
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
   --paper: var(--paper-d);
   --paper-2: var(--paper2-d);
@@ -462,11 +426,7 @@ h1:focus { outline: none; }
 .theme-toggle .opt-light { display: none; align-items: center; gap: 6px; }
 .theme-toggle .opt-dark  { display: inline-flex; align-items: center; gap: 6px; }
 
-/* Show "Light" option when dark scheme is active (OS dark without light override, OR explicit dark override) */
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-toggle .opt-light { display: inline-flex; }
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-toggle .opt-dark  { display: none; }
-}
+/* Show "Light" option when dark mode is active */
 :root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-toggle .opt-light { display: inline-flex; }
 :root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-toggle .opt-dark  { display: none; }
 
@@ -561,8 +521,21 @@ h1:focus { outline: none; }
 .frame video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   background: var(--paper-2);
+}
+.frame video:fullscreen,
+.frame video:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  object-fit: contain;
+  background: #0E1214;
+}
+.frame video::backdrop {
+  background: #0E1214;
 }
 .play {
   position: absolute;
@@ -675,10 +648,6 @@ section { padding: 120px 0 0; }
   margin-top: 1px;
 }
 .note .mark-dark { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .note .mark-light { display: none; }
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .note .mark-dark  { display: block; }
-}
 :root:has(> head > meta[name="color-scheme"][content="dark"]) .note .mark-light { display: none; }
 :root:has(> head > meta[name="color-scheme"][content="dark"]) .note .mark-dark  { display: block; }
 .note p { font-size: 14.5px; color: var(--ink-2); line-height: 1.55; }
@@ -1102,23 +1071,22 @@ footer p {
   var root = document.documentElement;
   root.classList.add('js');
 
-  // Two-state color-scheme toggle (follows OS default; removes override when returning to OS)
+  // Two-state color-scheme toggle (light mode by default; persists explicit dark toggle)
   var meta = document.querySelector('meta[name="color-scheme"]');
   var toggle = document.getElementById('themeToggle');
-  var mqDark = window.matchMedia('(prefers-color-scheme: dark)');
 
   function getStored() {
     try {
-      var v = localStorage.getItem('color-scheme');
-      return (v === 'light' || v === 'dark') ? v : null;
-    } catch (e) { return null; }
+      return localStorage.getItem('color-scheme') === 'dark' ? 'dark' : 'light';
+    } catch (e) { return 'light'; }
   }
   function applyMeta(val) {
-    if (meta) meta.content = val || 'light dark';
-    syncDemoLinks();
+    var mode = val === 'dark' ? 'dark' : 'light';
+    if (meta) meta.content = mode;
+    syncDemoLinks(mode);
   }
-  function syncDemoLinks() {
-    var active = getStored() || (mqDark.matches ? 'dark' : 'light');
+  function syncDemoLinks(mode) {
+    var active = mode || getStored();
     document.querySelectorAll('a[href^="demos/"]').forEach(function (a) {
       var raw = a.getAttribute('data-base-href') || a.getAttribute('href');
       a.setAttribute('data-base-href', raw);
@@ -1126,19 +1094,15 @@ footer p {
       a.setAttribute('href', raw + sep + 'theme=' + active);
     });
   }
-  syncDemoLinks();
-  if (mqDark.addEventListener) mqDark.addEventListener('change', syncDemoLinks);
+  applyMeta(getStored());
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var sys = mqDark.matches ? 'dark' : 'light';
-      var current = getStored() || sys;
-      var target = current === 'dark' ? 'light' : 'dark';
-      var next = (target === sys) ? null : target;
+      var target = getStored() === 'dark' ? 'light' : 'dark';
       try {
-        if (next) localStorage.setItem('color-scheme', next);
+        if (target === 'dark') localStorage.setItem('color-scheme', 'dark');
         else localStorage.removeItem('color-scheme');
       } catch (e) {}
-      applyMeta(next);
+      applyMeta(target);
     });
   }
   window.addEventListener('storage', function (e) {

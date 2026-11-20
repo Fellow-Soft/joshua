@@ -1551,7 +1551,7 @@ var _initReady = 0;
 function _checkInitReady() {
  _initReady++;
  if (_initReady < 2) return;
- applyTheme((function(){var q=new URLSearchParams(location.search).get("theme");if(q==="dark"||q==="light")return q;try{var s=localStorage.getItem("color-scheme");if(s==="dark"||s==="light")return s;}catch(e){}return window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";})());
+ applyTheme((function(){var q=new URLSearchParams(location.search).get("theme");if(q==="dark"||q==="light")return q;try{var s=localStorage.getItem("color-scheme");if(s==="dark"||s==="light")return s;}catch(e){}return "light";})());
  if (_initData && !_initData.error) {
   init(_initData);
  } else {
@@ -17214,8 +17214,7 @@ body.no-demo-bar .pf-demo-bar{display:none!important}
   var forced = q.get('theme');
   var stored = null;
   try { stored = localStorage.getItem('color-scheme'); } catch(e){}
-  var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var want = forced || stored || (sysDark ? 'dark' : 'light');
+  var want = (forced === 'dark' || forced === 'light') ? forced : (stored === 'dark' || stored === 'light' ? stored : 'light');
   if (want === 'dark' && typeof applyTheme === 'function') {
     applyTheme('dark');
   }

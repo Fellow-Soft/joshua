@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Parasol Labs">
+  <circle cx="32" cy="11" r="2.6" fill="#8E4C2C"/>
+  <path d="M8 34 A24 20 0 0 1 56 34 Q44 30.5 32 34 Q20 30.5 8 34 Z" fill="#211E1A"/>
+  <path d="M32 14.5 Q25 23 20 32.2 M32 14.5 Q39 23 44 32.2" fill="none" stroke="#F3EFE6" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+  <path d="M32 34 V52 M24 52 H40" fill="none" stroke="#211E1A" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

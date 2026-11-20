@@ -1,0 +1,59 @@
+<svg class="petunia" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Petunia">
+  <defs>
+    <radialGradient id="petGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E8CB8F" stop-opacity=".65"/>
+      <stop offset="55%" stop-color="#6F968E" stop-opacity=".22"/>
+      <stop offset="100%" stop-color="#6F968E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="petSoft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation=".7"/>
+    </filter>
+  </defs>
+  <circle class="glow" cx="32" cy="32" r="26" fill="url(#petGlow)" opacity=".35"/>
+  <g class="ring"><circle cx="32" cy="32" r="28.5" fill="none" stroke="#6F968E" stroke-width=".6" stroke-dasharray="0.6 5.4" opacity=".65"/></g>
+  <g class="arc"><path d="M 32 3.5 A 28.5 28.5 0 0 1 60.5 32" fill="none" stroke="#6F968E" stroke-width=".9" stroke-linecap="round" opacity=".8"/></g>
+  <g class="mote-a"><circle cx="32" cy="3.5" r="1.1" fill="#8E4C2C"/></g>
+  <g class="mote-b"><circle cx="56" cy="44" r=".75" fill="#6F968E"/></g>
+  <g class="echo">
+    <g transform="rotate(36 32 32)">
+      <g transform="translate(32 32) scale(.52) translate(-32 -32)">
+        <path d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" transform="rotate(0 32 32)" fill="none" stroke="#8E4C2C" stroke-width="1.6" opacity=".34"/>
+        <path d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" transform="rotate(72 32 32)" fill="none" stroke="#8E4C2C" stroke-width="1.6" opacity=".34"/>
+        <path d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" transform="rotate(144 32 32)" fill="none" stroke="#8E4C2C" stroke-width="1.6" opacity=".34"/>
+        <path d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" transform="rotate(216 32 32)" fill="none" stroke="#8E4C2C" stroke-width="1.6" opacity=".34"/>
+        <path d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" transform="rotate(288 32 32)" fill="none" stroke="#8E4C2C" stroke-width="1.6" opacity=".34"/>
+      </g>
+    </g>
+  </g>
+  <g class="bloom">
+    <g class="seg s1" transform="rotate(0 32 32)">
+      <path class="ghost" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1" opacity=".35"/>
+      <path class="trace t1" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#7EA39B" stroke-width="2.2" stroke-linecap="round" filter="url(#petSoft)" opacity=".65"/>
+      <path class="trace t1" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1.35" stroke-linecap="round"/>
+    </g>
+    <g class="seg s2" transform="rotate(72 32 32)">
+      <path class="ghost" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1" opacity=".35"/>
+      <path class="trace t2" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#7EA39B" stroke-width="2.2" stroke-linecap="round" filter="url(#petSoft)" opacity=".65"/>
+      <path class="trace t2" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1.35" stroke-linecap="round"/>
+    </g>
+    <g class="seg s3" transform="rotate(144 32 32)">
+      <path class="ghost" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1" opacity=".35"/>
+      <path class="trace t3" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#7EA39B" stroke-width="2.2" stroke-linecap="round" filter="url(#petSoft)" opacity=".65"/>
+      <path class="trace t3" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1.35" stroke-linecap="round"/>
+    </g>
+    <g class="seg s4" transform="rotate(216 32 32)">
+      <path class="ghost" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1" opacity=".35"/>
+      <path class="trace t4" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#7EA39B" stroke-width="2.2" stroke-linecap="round" filter="url(#petSoft)" opacity=".65"/>
+      <path class="trace t4" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1.35" stroke-linecap="round"/>
+    </g>
+    <g class="seg s5" transform="rotate(288 32 32)">
+      <path class="ghost" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1" opacity=".35"/>
+      <path class="trace t5" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#7EA39B" stroke-width="2.2" stroke-linecap="round" filter="url(#petSoft)" opacity=".65"/>
+      <path class="trace t5" d="M30.2 26.5 C 23.8 21.5, 23.2 10.8, 32 6.2 C 40.8 10.8, 40.2 21.5, 33.8 26.5" pathLength="100" fill="none" stroke="#3F5D59" stroke-width="1.35" stroke-linecap="round"/>
+    </g>
+  </g>
+  <g class="core">
+    <circle class="halo" cx="32" cy="32" r="5.4" fill="none" stroke="#E8CB8F" stroke-width=".7" opacity=".65"/>
+    <circle cx="32" cy="32" r="2.2" fill="#E8CB8F"/>
+  </g>
+</svg>
